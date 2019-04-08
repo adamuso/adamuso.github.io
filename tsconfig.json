@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "outDir": "bin",
+        "sourceMap": true,
+        "module": "amd",
+        "target": "es2017",
+        "lib": ["es6", "dom"],
+        "experimentalDecorators": true
+    }
+}

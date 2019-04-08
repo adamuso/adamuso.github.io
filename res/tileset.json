@@ -1,0 +1,7 @@
+{
+    "magic": "tileset",
+    "tileSize": 16,
+    "width": 8,
+    "height": 10,
+    "src": "res/DeepForestPackNA/Tileset/DeepForestTileset.png"
+}
