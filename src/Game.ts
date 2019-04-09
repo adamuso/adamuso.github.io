@@ -16,6 +16,7 @@ export class Game
     private keyboardInput : KeyboardInput;
     private cameraX : number;
     private cameraY : number;
+    private wKeyCloud! : PIXI.Sprite;
     private player! : PIXI.extras.AnimatedSprite;
     private playerContainer! : PIXI.Container;
     private playerVelocity : PIXI.Point;
@@ -24,6 +25,7 @@ export class Game
     private playerOnGround : boolean;
     private playerRightAnimation! : PIXI.Texture[];
     private playerLeftAnimation! : PIXI.Texture[];
+    private infoBoxes : { x: number, y: number, date: string, project: string, contents: string }[];
 
     constructor(application : PIXI.Application)
     {
@@ -36,6 +38,37 @@ export class Game
         this.playerJump = false;
         this.playerJumpPower = 0;
         this.playerOnGround = true;
+
+        this.infoBoxes = [
+            { x: 7, y: 9, date: "2008", project: "Wczesne lata", contents: "Nauka pascala - proste programy konsolowe"},
+            { x: 20, y: 5, date: "2009", project: "asd", contents: "Nauka C++, wciąż proste programy konsolowe"},
+            { x: 33, y: 5, date: "2010", project: "asd", contents: "Odkrywanie języka Visual Basic w excelu - VBA"},
+            { x: 46, y: 3, date: "2011", project: "asd", contents: "Visual Basic.NET i pierwsze aplikacje okienkowe oraz graficzne"},
+            { x: 56, y: 4, date: "2012", project: "asd", contents: "Poznawanie C# oraz Javy wraz z pisaniem pluginów do serwera w grze Minecraft"},
+            { x: 69, y: 5, date: "2013", project: "asd", contents: "Rozwój pluginów oraz zgłębianie tajników Javy"},
+            { x: 84, y: 2, date: "2014", project: "asd", contents: "Powrót do korzeni, czyli C++ i aplikacje okienkowe oraz graficzne, a także prowadzenie strony szkoły w PHP i JS"},
+            { x: 91, y: 10, date: "2015", project: "asd", contents: "Ciągła walka ze stroną internetową szkoły oraz dalsza nauka C#"},
+            { x: 95, y: 0, date: "2016", project: "asd", contents: "Pierwsza praca na stanowisku .NET developera oraz rozpoczęcie studiów na Politechnice Śląskiej"},
+            { x: 113, y: 1, date: "2017", project: "asd", contents: "Zmiana trybu studiów z dziennych na zaoczne, kolejna praca na stonowisku programisty .NET"},
+            { x: 134, y: 3, date: "2017 - 2019", project: "asd", contents: "Dalsza praca i studia zaoczne oraz szersze poznawanie JavaScript i TypeScript"},
+            { x: 147, y: 10, date: "2014", project: "asd", contents: "test"}
+        ]
+
+        document.getElementById("arrow")!.addEventListener("click", () =>
+        {
+            document.getElementById("info")!.style.visibility = "";
+
+            if(!this.application.ticker.started)
+                this.application.start();
+        });
+
+        document.getElementById("ok")!.addEventListener("click", () =>
+        {
+            document.getElementById("info")!.style.visibility = "";
+
+            if(!this.application.ticker.started)
+                this.application.start();
+        });
     }    
 
     async load()
@@ -51,6 +84,7 @@ export class Game
                 .add("backgroundMap", "res/backgroundMap.json")
                 .add("playerRight", "res/male_walk_right.png")
                 .add("playerLeft", "res/male_walk_left.png")
+                .add("wKeyCloud", "res/w_key_cloud.png")
                 .load(() => resolve());
         });
 
@@ -68,10 +102,13 @@ export class Game
 
         this.backgroundMap = this.application.loader.resources.backgroundMap.data;
         this.backgroundMap.updateMapRendering(this.getViewport());
-        this.backgroundMap.enableEdit();
 
         this.tileMap = this.application.loader.resources.tileMap.data;
         this.tileMap.updateMapRendering(this.getViewport());
+        this.tileMap.enableEdit();
+
+        this.wKeyCloud = new PIXI.Sprite(this.application.loader.resources.wKeyCloud.texture);
+        this.wKeyCloud.renderable = false;
 
         this.playerRightAnimation = [];
         const playerRightTexture = this.application.loader.resources.playerRight.texture;
@@ -86,7 +123,6 @@ export class Game
         for (var i = 0; i < 6; i++)
             this.playerLeftAnimation.push(new PIXI.Texture(playerLeftTexture.baseTexture, new PIXI.Rectangle(32 * i, 0, 32, 48)));
 
-
         this.player = new PIXI.extras.AnimatedSprite(this.playerRightAnimation);
         this.player.animationSpeed = 0.2;
         this.player.play();
@@ -94,6 +130,7 @@ export class Game
         this.player.height = 84;
 
         this.playerContainer = new PIXI.Container();
+        this.playerContainer.addChild(this.wKeyCloud);
         this.playerContainer.addChild(this.player);
 
         this.application.stage.addChild(this.backgroundMap);
@@ -108,6 +145,33 @@ export class Game
 
     tick(delta : number)
     {
+        const pX = this.player.x + this.player.width / 2;
+        const pY = this.player.y + this.player.height / 2;
+        const tileX = Math.floor(pX / this.tileMap.tileSize);
+        const tileY = Math.floor(pY / this.tileMap.tileSize);
+        let playerInteract = false;
+        let interactInfoBox = null;
+
+        this.wKeyCloud.renderable = false;
+
+        for(let i = 0; i < this.infoBoxes.length; i++)
+        {
+            const infoBox = this.infoBoxes[i]; 
+
+            if(infoBox.x === tileX && infoBox.y === tileY)
+            {
+                this.wKeyCloud.renderable = true;
+                this.wKeyCloud.x = tileX * this.tileMap.tileSize + this.tileMap.tileSize;
+                this.wKeyCloud.y = tileY * this.tileMap.tileSize - this.tileMap.tileSize;
+                this.wKeyCloud.width = this.tileMap.tileSize * 2;
+                this.wKeyCloud.height = this.tileMap.tileSize;
+                playerInteract = true;
+                interactInfoBox = infoBox;
+
+                break;
+            }
+        }
+
         if(this.keyboardInput.isKeyDown("a"))
         {
             // this.moveCamera(-8, 0);
@@ -120,12 +184,32 @@ export class Game
             this.playerVelocity.x += 0.5;
         }
         
-        if(this.keyboardInput.isKeyDown("w") && (this.playerOnGround || this.playerJump) && this.playerJumpPower <= 45)
+        if(this.keyboardInput.isKeyDown("w") && !playerInteract && (this.playerOnGround || this.playerJump) && this.playerJumpPower <= 45)
         {
             // this.moveCamera(0, -8);
             this.playerJumpPower += 15;
             this.playerVelocity.y -= 9;
             this.playerJump = true;
+        }
+
+        if(this.keyboardInput.isKeyDown("w") && playerInteract && interactInfoBox)
+        {
+            const elem = document.getElementById("info")!;
+            const date = elem.querySelector("#date");
+            const project = elem.querySelector("#project");
+            const contents = elem.querySelector("#contents");
+            const youtubeButton = <HTMLElement>elem.querySelector("#youtube")!;
+            const githubButton = <HTMLElement>elem.querySelector("#github")!;
+            const okButton = <HTMLElement>elem.querySelector("#ok")!;
+
+            elem.style.visibility = "visible";
+            date!.textContent = interactInfoBox.date;
+            project!.textContent = interactInfoBox.project;
+            contents!.textContent = interactInfoBox.contents;
+            // youtubeButton.style.visibility = "collapse";
+            // githubButton.style.visibility = "collapse";
+            // okButton.style.visibility = "collapse";
+            this.application.stop();
         }
 
         if(this.playerJumpPower > 45)

@@ -3,15 +3,97 @@ body {
     overflow: hidden;
 }
 
-h1 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #DFDFDF;
-    color: #1F1F1F;
+div#info
+{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'VT323', monospace;
+
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: auto;
+    width: 100%;
+    height: 200px;
+    visibility: collapse;
 }
 
-div.article
+div#info > div
 {
-    margin: auto;
-    width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    flex-grow: 1;
+}
+
+div#info h1
+{
+    font-size: 2.5em;
+    margin: 0;
+    border: none;
+}
+
+div#info h2
+{
+    font-size: 2em;
+    margin: 0;
+    border: none;
+}
+
+div#info #contents
+{
+    font-size: 1.3em;
+    margin: 5px;
+    max-width: 80%;
+
+    flex-grow: 1;
+}
+
+div#info .buttons
+{
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    image-rendering: pixelated;
+}
+
+div#info .buttons *
+{
+    background-image: url("res/buttons.png");
+    background-position: 0 0;
+    background-size: 128px 32px;
+ 
+    margin: 0px 2px;
+
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+div#info .buttons *:hover
+{
+    transform: scale(1.2);
+}
+
+div#info .buttons #youtube
+{
+    background-position: 0 0;
+}
+
+div#info .buttons #github
+{
+    background-position: -32px 0;
+}
+
+div#info .buttons #ok
+{
+    background-position: -64px 0;
+}
+
+div#info .buttons #arrow
+{
+    background-position: -96px 0;
 }

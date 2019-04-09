@@ -10,7 +10,7 @@ define(["require", "exports"], function (require, exports) {
         }
         get tileCount() { return this._width * this._height; }
         isCollidable(tile) {
-            return tile != 29 && tile != 30;
+            return tile != 29 && tile != 30 && tile != 71 && tile != 76;
         }
         getTile(tile) {
             if (!this.texture)
