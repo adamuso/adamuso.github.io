@@ -25,7 +25,7 @@ export class Game
     private playerOnGround : boolean;
     private playerRightAnimation! : PIXI.Texture[];
     private playerLeftAnimation! : PIXI.Texture[];
-    private infoBoxes : { x: number, y: number, date: string, project: string, contents: string }[];
+    private infoBoxes : { x: number, y: number, type: "story" | "project", date: string, project: string, contents: string, github? : string, youtube? : string }[];
 
     constructor(application : PIXI.Application)
     {
@@ -40,18 +40,95 @@ export class Game
         this.playerOnGround = true;
 
         this.infoBoxes = [
-            { x: 7, y: 9, date: "2008", project: "Wczesne lata", contents: "Nauka pascala - proste programy konsolowe"},
-            { x: 20, y: 5, date: "2009", project: "asd", contents: "Nauka C++, wciąż proste programy konsolowe"},
-            { x: 33, y: 5, date: "2010", project: "asd", contents: "Odkrywanie języka Visual Basic w excelu - VBA"},
-            { x: 46, y: 3, date: "2011", project: "asd", contents: "Visual Basic.NET i pierwsze aplikacje okienkowe oraz graficzne"},
-            { x: 56, y: 4, date: "2012", project: "asd", contents: "Poznawanie C# oraz Javy wraz z pisaniem pluginów do serwera w grze Minecraft"},
-            { x: 69, y: 5, date: "2013", project: "asd", contents: "Rozwój pluginów oraz zgłębianie tajników Javy"},
-            { x: 84, y: 2, date: "2014", project: "asd", contents: "Powrót do korzeni, czyli C++ i aplikacje okienkowe oraz graficzne, a także prowadzenie strony szkoły w PHP i JS"},
-            { x: 91, y: 10, date: "2015", project: "asd", contents: "Ciągła walka ze stroną internetową szkoły oraz dalsza nauka C#"},
-            { x: 95, y: 0, date: "2016", project: "asd", contents: "Pierwsza praca na stanowisku .NET developera oraz rozpoczęcie studiów na Politechnice Śląskiej"},
-            { x: 113, y: 1, date: "2017", project: "asd", contents: "Zmiana trybu studiów z dziennych na zaoczne, kolejna praca na stonowisku programisty .NET"},
-            { x: 134, y: 3, date: "2017 - 2019", project: "asd", contents: "Dalsza praca i studia zaoczne oraz szersze poznawanie JavaScript i TypeScript"},
-            { x: 147, y: 10, date: "2014", project: "asd", contents: "test"}
+            { x: 7, y: 9, date: "2008", type: "story", project: "Wczesne lata", contents: "Nauka pascala - proste programy konsolowe"},
+            { x: 20, y: 5, date: "2009", type: "story", project: "C++", contents: "Nauka C++, wciąż proste programy konsolowe"},
+            { x: 33, y: 5, date: "2010", type: "story", project: "Visual Basix", contents: "Odkrywanie języka Visual Basic w excelu - VBA"},
+            { x: 46, y: 3, date: "2011", type: "story", project: "Platforma .NET", contents: "Visual Basic.NET i pierwsze aplikacje okienkowe oraz graficzne"},
+            { x: 56, y: 4, date: "2012", type: "story", project: "Języki obiektowe", contents: "Poznawanie C# oraz Javy wraz z pisaniem pluginów do serwera w grze Minecraft"},
+            { x: 69, y: 5, date: "2013", type: "story", project: "Java", contents: "Rozwój pluginów oraz zgłębianie tajników Javy"},
+            { x: 84, y: 2, date: "2014", type: "story", project: "Powrót do C++", contents: "Powrót do korzeni, czyli C++ i aplikacje okienkowe oraz graficzne, a także prowadzenie strony szkoły w PHP i JS"},
+            { x: 91, y: 10, date: "2015", type: "story", project: "C#", contents: "Ciągła walka ze stroną internetową szkoły oraz dalsza nauka C#"},
+            { x: 95, y: 0, date: "2016", type: "story", project: "Pierwsza praca", contents: "Pierwsza praca na stanowisku .NET developera oraz rozpoczęcie studiów na Politechnice Śląskiej"},
+            { x: 113, y: 1, date: "2017", type: "story", project: "Studia i druga praca", contents: "Zmiana trybu studiów z dziennych na zaoczne, kolejna praca na stonowisku programisty .NET"},
+            { x: 134, y: 3, date: "2017 - 2019", type: "story", project: "JavaScript i TypeScript", contents: "Dalsza praca i studia zaoczne oraz szersze poznawanie JavaScript i TypeScript"},
+            { x: 10, y: 13, date: "2014", type: "project", project: "Strona szkoły", contents: "Prowadzenie strony liceum opartej na starym hostingu z PHP 4.4.9 oraz JavaScript"},
+            { x: 13, y: 3, date: "2014", type: "project", project: "Logic Ball", contents: "Nauka tworzenia aplikacji graficznych w C#. Miała być to gra logiczna polegająca " +
+                "na przeusnięciu kulki do celu, która mogła poruszać się w czterech kierunkach ale zatrzymywać tylko w momencie uderzenia w ścianę. Projekt w " +
+                "którym pierwszy raz wykorzystałem efekty cząsteczkowe. Zdobywałem wiedzie na temat podstawowe elementów fizyki w grach oraz detekcji kolizji.", 
+                github: "https://github.com/adamuso/LogicBall"
+            },
+            { x: 23, y: 9, date: "2015", type: "project", project: "3D Chunk Platformer Test", contents: "Projekt w którym uczyłem się tworzenia aplikacji używającej grafiki 3D. " +
+                "Zainspirowany grą Minecraft chciałem stworzyć podobny silnik renderujący sześciany z nałożoną teksturą. Dodatkowo udało mi się osiągnąć w " + 
+                "miare optymalne renderowanie za pomocą tzw. 'chunków', które pozwalały na szybkie ładowanie dużych obszarów z sześcianami. Gra ostatecznie " +
+                "miała być platformowa w świecie o dosyć dużych rozmiarach. Do projektu wykorzystywałem język C# oraz bibliotekę MonoGame.",
+                github: "https://github.com/adamuso/Platform3D"
+            },
+            { x: 35, y: 13, date: "2016", type: "project", project: "Praca w firmie - OCR", contents: "Podczas pracy w firmie PirmeSoft w Poznaniu nauczyłem się wykorzystywać " +
+                "różne algorytmy przetwarzania obrazu, w tym głównie aby umożliwić odczyt tekstu z dokumentów. Wykorzystywałem takie operacje jak binaryzacje " +
+                "różne filtry odszumiające obraz oraz algorytm RLSA (Run Length Smoothing Algorithm. Zajmowałem się przetwarzaniem obrazu oraz uruchamianiu na " +
+                "nim OCR'a, z którego jako wynik otrzymywałem bloki z tekstem. Następnie należało wybrać odpowiednie bloki oraz poprawić odczytany tekst, gdyż " +
+                "często zawierał wiele błędów (wykorzystywana była w tym celu odległość Levenshteina). Opracowałem w pracy własny algorytm wybierania odpowiednich " +
+                " bloków tekstu opierający się na geometrii i zależnościach między danymi blokami, co spowodowało zwiększe efektywności odczytu o ponad 15%. " +
+                "Pisałem również aplikacje wewnętrzne umożliwiające interaktywną prace z przetworzonymi obrazami jak i testowanie różnych rodzajów procesowania " + 
+                "obrazu, a także podgląd odczytanych danych i trening OCR'a. Do projektów wykorzystywany był język C# oraz technologia WPF."},
+            { x: 48, y: 9, date: "2016", type: "project", project: "Destroy Nobots", contents: "Zamiarem było stworzenie gry, w której gracz miałby do dyspozycji pojazdy mogące do " +
+                "siebie strzelać i jego celem byłoby wyeliminowanie wrogich pojazdów, a przy dalszym rozwoju miała powstać gra strategiczna. Kluczowym elementem było " + 
+                "to, że pojazdy nie byłyby zaprogramowane. To właśnie zadaniem gracza byłoby napisać im program umożliwiający zwycięstwo w grze. Program byłby pisany " + 
+                "w wymyślonym języku assembler w grze. W projekcie został zaimplementowany w całości własny język assembler, którego można użyć w grze. Jest on w " +
+                "pełni sprawny, kompilowalny do kodu binarnego, a także została do niego napisana wirtualna maszyna, która ten kod potrafi uruchomić. W projekcie " +
+                "została użyta technologia C# i biblioteka MonoGame. W aktualnym stanie projekt wyświetla pojazd, który jest zaprogramowany za pomocą wbudowanego " + 
+                "assemblera i za pomocą zawartych w nim rejestrów pojazd potrafi odczytywać dane wytworzone przez assembler, które sterują jego ruchem.",
+                github: "https://github.com/adamuso/DestroyNobots"
+            },
+            { x: 65, y: 13, date: "2016", type: "project", project: "Zręcznościowa platformówka", contents: "Projekt miał na celu odtworzenie starej gry z dzieciństwa Jazz JackRabbit 2 " +
+                "(z której testowo została użyta grafika postaci) aby potrenować tworzenie gier platformowych. Została zaimplementowana w nim fizyka gier platformowych " +
+                "wraz z detekcją kolziji Pixel Perfect Collisions pozwalającą na bardzo dokładną kolizję z mapą gry oraz innymi postaciami. Stworzony również został " + 
+                "silnik renderujący mapę składającą się z wielu warstw kafelków nakładających się na siebie, co pozwala uzyskać różne efekty takie jak: Parallax Scrolling, " + 
+                "czy automatycznie ruszające się tło, a także zapętlające się tło lub przednia scena. W grze również został zaimplementowany system triggerów (lub eventów), które " + 
+                "pozwalały w prosty sposób na interakcje z graczem lub otoczeniem poprzez określenie miejsca danego trigger'u na mapie oraz jego zachowania. Do gry została " + 
+                "użyta technologia C# oraz biblioteka MonoGame. W grze aktualnie możemy tylko testować poruszanie się po mapie i platformową fizykę.",
+                github: "https://github.com/adamuso/OldStylePlatformingGame"
+            },
+            { x: 75, y: 5, date: "2018", type: "project", project: "Console Invaders", contents: "Gra w konsoli polegająca na lataniu statkiem na boki, strzelaniem w nadlatujące z góry " + 
+                "wrogie statki oraz omijaniem nadlatujących pocisków. Gra została napsana w konsoli wykorzystując język C#."},
+            { x: 80, y: 13, date: "2018", type: "project", project: "Blazor.WebGL - czyli silnik graficzny w C# dla przeglądarek", contents: "Projekt polega na stworzeniu silnika graficznego, " + 
+                "w którym możemy w języku C# pisać gry na przeglądarki. Silnik uruchamiany byłby w przeglądarce za pomocą biblioteki Blazor, która potrafi załadować za pomocą " +
+                "WebAssembly całą platformę Mono, a następnie pozwala na ładowania skompilowanych plików .dll wygenerowanych za pomocą języków .NET. Projekt jest tzw. " +
+                "'proof of concept' pokazującym, że można pisać gry bezpośrednio w C# na przeglądarki. Stworzone zostały podsawty silnika umożliwiające wyświetlenie " + 
+                "sześcianu 3D oraz nałożeniu na niego tekstury przy użyciu WebGL, co oznacza, że działa także wczytywanie shaderów i innych zasobów. Mając możliwość " +   
+                "wyświetlania prymitywów oraz ładowania shaderów jesteśmy w stanie tworzyć podstawowe gry 3D oraz 2D. Projekt można rozwinąć o możliwość ładowania " + 
+                "modeli w określonym formacie, czy o dodatkowe elementy ułatwiające pracę z WebGL w C#.",
+                github: "https://github.com/adamuso/Blazor.WebGL"
+            },
+            { x: 85, y: 6, date: "2018", type: "project", project: "Praca - wizualizacja sprzętowa", contents: "W pracy odpowiadam za graficzną wizualizację działania lub stanu sprzętu, " + 
+                "która jest pokazywana klientom. Tworzę ją od zera, zaczynając od programów agregujących dane z urządzeń łączących się porpzez różne protokoły komunikacjyjne " + 
+                "(w tym bezpośrednią komunikację po portach szeregowych, czy protokół modbus). Z zebranych danych tworzona jest baza, z której następnie wizualizacja pobiera dane " + 
+                "do wyświetlania. Urządzenia pozwalają również na przesyłanie różnych zdarzeń, które następnie wyświetlają się na wizualizacji jako alarmy, ostrzeżenia, czy informacje. " + 
+                "Wizualizacja może również komunikować się w drugą stronę i wysyłać instrukcję do urządzeń. Całość jest oparta o język C# i technologie WPF oraz WCF z użyciem usług " + 
+                "systemu Windows, a takze IIS'a i bazy danych MSSQL."},
+            { x: 89, y: 0, date: "2018", type: "project", project: "Praca - parser języka C", contents: "Często podczas pracy z urządzeniami wykorzystywane są różne konfigurację, czy instrukcje przesyłane " +
+                "do lub z urządzenia. Aplikacje napisane w wyższych językach muszą obsługiwać różne wersje tych danych, dlatego został stworzony przeze mnie prosty parser języka C, w którym " + 
+                "skupiłem się głównie na odczytywaniu i interpretowaniu struktur zapisanych w kodzie, a także ewaluacji wyrażeń preprocesora, które były niezbędne do odczytania wielkości " + 
+                "struktur. Ostatecznie parser ten tworzy plik binarny zawierający wszystkie informacje na temat struktur, który następnie można otworzyć za pomocą kodu w C#. Pozwala to na " + 
+                "zamianę jakielkowiek tablicy bajtów na strukture zapisaną w języku C i odczytaniu wszystkich danych poprzez nazwy zapisane w strukturze. Wszystko dzieje się automatycznie i " +
+                "biblioteka wspierająca parser przeprowadza wszystkie przesunięcia i obliczenia niezbędne do odczytania danych. Dodatkowo z wykorzystaniem obiektów dynamicznych w C# możemy " + 
+                "posługiwać się strukturą jak każdym zwykłym obiektem i mieć dostęp do zmiennych zapisanych w tablicy bajtów poprzez naturalny sposób dostępu do zmiennych lub właściwości w C#. " + 
+                "Parser został napisany w C# jako aplikacja konsolowa."},
+            { x: 100, y: 8, date: "2018", type: "project", project: "Conway's Game Of Life", contents: "Projekt przygotowany na zajęcia projektowe na studiach. Typowa symulacja gry w życie napisana obiektowo w C++ z " +
+                "wykorzystaniem elementów C++11. Aplikacja jest konsolowa i pozwala obserwować oraz manipulować symulacją. Jest zoptymalizowana pod względem graficznego wyświetlania w konsoli " + 
+                "oraz pozwala na stworzenie w miarę dużego świata poprzez możliwość przesuwania kamery. Dodatkowo został zaimplementowany prosty interfejs graficzny dla użytkownika, czyli proste menu " + 
+                "oraz możliwość wyboru opcji. W projekcie został stworzony własny generyczny typ przechowujący referencje bazujący na shared_ptr, który zapewnia jeszcze bardziej abstrakcyjny dostęp do obiektów i " + 
+                "pozwala na mniejsze zaangażowanie programisty w zarządzanie pamięcią."},
+            { x: 118, y: 11, date: "2018", type: "project", project: "GoodFood", contents: "Wspólne tworzenie z Dominiką Gibek aplikacji na system Android w języku Java polegającej na szybkiej możliwości wyszukiwania " + 
+                "przepisów ze składników, które posiadamy w domu. Projekt umożliwiał również dodawanie własnych przepisów i graficznie zorientowane wyszukwianie przepisów. W projekcie odpowiadałem za " + 
+                "tworzenie logiki wyszukiwania oraz za pomniejsze zadania związane z łączeniem widoków z logiką."},
+            { x: 138, y: 10, date: "2019", type: "project", project: "Praca - wizualizacja lokalizacji", contents: "Podczas pracy zaszła potrzeba wykorzystania lokalizacji za czym idzie również jej wizualizacja. Zajmowałem " +
+                "się tworzeniem tej wizualizacji jak również analizą danych zebranych z urządzeń lokalizujących. Wykorzystywałem przy tym różne algorytmy uśredniania, a także wygładzania przebiegów sygnału " + 
+                "dostarczanego przez urządzenia. Zaproponowałem rozwiązanie, które polepszyło jakość odczytu poprzez zastosowanie różnych parametrów wysyłania sygnału na urządzeniu. Projekt jest wciąż rozwijany " + 
+                "i wymaga większej analizy zebranych danych, aby opracować lepsze rozwiązania."},
+            { x: 155, y: 10, date: "2019", type: "project", project: "Projekt portfolio", contents: "Projekt zrealizowany w tydzień, w wolnych godzinach po pracy przedstawiający moje dotychczasowe projekty i trochę " + 
+                "uporządkowanej historii. Stworzony został w TypeScript z wykorzystaniem biblioteki Pixi.js do renderowania grafiki. Zaimplementowana została bardzo prosta fizyka platformowa, renderowanie " + 
+                "mapy i możliwość interakcji z tabliczkami.", github: "https://github.com/adamuso/adamuso.github.io"}
         ]
 
         document.getElementById("arrow")!.addEventListener("click", () =>
@@ -105,7 +182,7 @@ export class Game
 
         this.tileMap = this.application.loader.resources.tileMap.data;
         this.tileMap.updateMapRendering(this.getViewport());
-        this.tileMap.enableEdit();
+        //this.tileMap.enableEdit();
 
         this.wKeyCloud = new PIXI.Sprite(this.application.loader.resources.wKeyCloud.texture);
         this.wKeyCloud.renderable = false;
@@ -141,6 +218,17 @@ export class Game
         this.application.stage.addChild(this.tileMap);
         this.application.stage.addChild(this.playerContainer);
         this.application.ticker.add(this.tick.bind(this));
+
+        setTimeout(() => this.showInfo({
+            date: new Date().getFullYear().toString(),
+            project: "Portfolio",
+            contents: "Witaj w moim protfolio! Nazywam się Adam Ogiba i chciałbym przedstawić zrealizowane przeze mnie projekty oraz troszkę historii o mnie. " + 
+                "Zrealizowałem portfolio w postaci małej gry platformowej, w którą możesz zagrać. W świecie gry rozstawiłem tabliczki, które chronologicznie ukażą " + 
+                "części mojej historii. Znajdziesz tu również małe komputery, które pomogą zapoznać się z moimi projektami. Aby poruszać postacią w lewo i prawo użyj " +
+                "odpowiednio klawiszy 'A' i 'D'. Aby skoczyć do góry użyj klawisza 'W'. Dodatkowo w momencie podejścia do tabliczki, aby odczytać jej zawartość " + 
+                "wciśnij przycisk skoku, czyli 'W'. Życzę miłej gry.",
+            type: "story"
+        }), 1000);
     }
 
     tick(delta : number)
@@ -194,22 +282,7 @@ export class Game
 
         if(this.keyboardInput.isKeyDown("w") && playerInteract && interactInfoBox)
         {
-            const elem = document.getElementById("info")!;
-            const date = elem.querySelector("#date");
-            const project = elem.querySelector("#project");
-            const contents = elem.querySelector("#contents");
-            const youtubeButton = <HTMLElement>elem.querySelector("#youtube")!;
-            const githubButton = <HTMLElement>elem.querySelector("#github")!;
-            const okButton = <HTMLElement>elem.querySelector("#ok")!;
-
-            elem.style.visibility = "visible";
-            date!.textContent = interactInfoBox.date;
-            project!.textContent = interactInfoBox.project;
-            contents!.textContent = interactInfoBox.contents;
-            // youtubeButton.style.visibility = "collapse";
-            // githubButton.style.visibility = "collapse";
-            // okButton.style.visibility = "collapse";
-            this.application.stop();
+            this.showInfo(interactInfoBox);
         }
 
         if(this.playerJumpPower > 45)
@@ -373,5 +446,44 @@ export class Game
         this.forestFrontMap.updateMapRendering(this.getViewport());
         this.forestBackFrontMap.updateMapRendering(this.getViewport());
         this.forestBackMap.updateMapRendering(this.getViewport());
+    }
+
+    private showInfo(interactInfoBox : { date : string, type : "story" | "project", project: string, contents: string , github? : string, youtube?: string})
+    {
+        const elem = document.getElementById("info")!;
+        const date = elem.querySelector("#date");
+        const project = elem.querySelector("#project");
+        const contents = elem.querySelector("#contents");
+        const youtubeButton = <HTMLElement>elem.querySelector("#youtube")!;
+        const githubButton = <HTMLElement>elem.querySelector("#github")!;
+        const okButton = <HTMLElement>elem.querySelector("#ok")!;
+        const arrowButton = <HTMLElement>elem.querySelector("#arrow")!;
+
+        elem.style.visibility = "visible";
+        date!.textContent = interactInfoBox.date;
+        project!.textContent = interactInfoBox.project;
+        contents!.textContent = interactInfoBox.contents;
+        youtubeButton.style.visibility = "collapse";
+
+        if(interactInfoBox.type === "story")
+        {
+            okButton.style.visibility = "collapse";
+            arrowButton.style.visibility = "";
+        }
+        else if(interactInfoBox.type === "project")
+        {
+            okButton.style.visibility = "";
+            arrowButton.style.visibility = "collapse";
+        }
+        
+        if(interactInfoBox.github)
+        {
+            githubButton.style.visibility = "";
+            (githubButton as HTMLLinkElement).href = interactInfoBox.github; 
+        }
+        else
+            githubButton.style.visibility = "collapse";
+        
+        this.application.stop();
     }
 }

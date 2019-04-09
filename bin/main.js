@@ -8,6 +8,7 @@ define(["require", "exports", "./Game", "./TileSetLoader", "pixi.js", "./TileMap
         PIXI.loaders.Loader.addPixiMiddleware(TileMapLoader_1.default);
         var application = new PIXI.Application(window.innerWidth, window.innerHeight, { backgroundColor: 0x7777E0, autoStart: false });
         document.getElementById("container").appendChild(application.view);
+        window.addEventListener('resize', () => application.renderer.resize(window.innerWidth, window.innerHeight));
         var game = new Game_1.Game(application);
         await game.load();
         game.run();

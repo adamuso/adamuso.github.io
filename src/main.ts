@@ -13,6 +13,8 @@ import TileMapLoader from "./TileMapLoader";
     var application = new PIXI.Application(window.innerWidth, window.innerHeight, { backgroundColor: 0x7777E0, autoStart: false });
     document.getElementById("container")!.appendChild(application.view);
 
+    window.addEventListener('resize', () => application.renderer.resize(window.innerWidth, window.innerHeight));
+
     var game = new Game(application);
     await game.load();
     game.run();

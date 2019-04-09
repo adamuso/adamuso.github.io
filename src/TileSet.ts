@@ -25,7 +25,7 @@ export class TileSet
 
     isCollidable(tile : number)
     {
-        return tile != 29 && tile != 30 && tile != 71 && tile != 76;
+        return tile != 29 && tile != 30 && tile != 71 && tile != 76 && tile != 63;
     }
 
     getTile(tile : number) : PIXI.Texture
