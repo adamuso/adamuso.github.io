@@ -40,36 +40,43 @@ export class Game
         this.playerOnGround = true;
 
         this.infoBoxes = [
-            { x: 7, y: 9, date: "2008", type: "story", project: "Wczesne lata", contents: "Nauka pascala - proste programy konsolowe"},
-            { x: 20, y: 5, date: "2009", type: "story", project: "C++", contents: "Nauka C++, wciąż proste programy konsolowe"},
-            { x: 33, y: 5, date: "2010", type: "story", project: "Visual Basix", contents: "Odkrywanie języka Visual Basic w excelu - VBA"},
-            { x: 46, y: 3, date: "2011", type: "story", project: "Platforma .NET", contents: "Visual Basic.NET i pierwsze aplikacje okienkowe oraz graficzne"},
-            { x: 56, y: 4, date: "2012", type: "story", project: "Języki obiektowe", contents: "Poznawanie C# oraz Javy wraz z pisaniem pluginów do serwera w grze Minecraft"},
+            { x: 7, y: 9, date: "2008", type: "story", project: "Wczesne lata", contents: "Pierwsze styczności z programowaniem. Poznanie języka Pascal oraz tworzenie prostych programów konsolowych. Poszukiwanie " +
+                "nowej wiedzy na temat programowania."},
+            { x: 20, y: 5, date: "2009", type: "story", project: "C i C++", contents: "Poznanie oraz nauka C i C++. Tworzenie programów konsolowych, poznawanie podstaw języków obiektowych oraz innych paradygmatów programowania."},
+            { x: 33, y: 5, date: "2010", type: "story", project: "Visual Basix", contents: "Odkrywanie języka Visual Basic w excelu (VBA) i tworzenie skryptów oraz bardzo prostych aplikacji."},
+            { x: 46, y: 3, date: "2011", type: "story", project: "Platforma .NET", contents: "Visual Basic.NET - pełna obiektowość i pierwsze aplikacje okienkowe oraz graficzne. Poznanie platformy .NET Framework."},
+            { x: 56, y: 4, date: "2012", type: "story", project: "Języki obiektowe", contents: "Poznawanie C# oraz Javy wraz z pisaniem pluginów, które rozbudowywały rozgrywkę, do serwera w grze Minecraft."},
             { x: 69, y: 5, date: "2013", type: "story", project: "Java", contents: "Rozwój pluginów oraz zgłębianie tajników Javy"},
             { x: 84, y: 2, date: "2014", type: "story", project: "Powrót do C++", contents: "Powrót do korzeni, czyli C++ i aplikacje okienkowe oraz graficzne, a także prowadzenie strony szkoły w PHP i JS"},
-            { x: 91, y: 10, date: "2015", type: "story", project: "C#", contents: "Ciągła walka ze stroną internetową szkoły oraz dalsza nauka C#"},
+            { x: 91, y: 10, date: "2015", type: "story", project: "C#", contents: "Dalsza praca ze stroną internetową szkoły oraz nauka C#. Tworzenie małych gier i prototypowanie różnych pomysłów."},
             { x: 95, y: 0, date: "2016", type: "story", project: "Pierwsza praca", contents: "Pierwsza praca na stanowisku .NET developera oraz rozpoczęcie studiów na Politechnice Śląskiej"},
             { x: 113, y: 1, date: "2017", type: "story", project: "Studia i druga praca", contents: "Zmiana trybu studiów z dziennych na zaoczne, kolejna praca na stonowisku programisty .NET"},
             { x: 134, y: 3, date: "2017 - 2019", type: "story", project: "JavaScript i TypeScript", contents: "Dalsza praca i studia zaoczne oraz szersze poznawanie JavaScript i TypeScript"},
-            { x: 10, y: 13, date: "2014", type: "project", project: "Strona szkoły", contents: "Prowadzenie strony liceum opartej na starym hostingu z PHP 4.4.9 oraz JavaScript"},
+            { x: 147, y: 10, date: "2019", type:"story", "project": "Historia dalej trwa", contents: "Dziękuje za wspólne przeżycie ze mną przygody jakim jest moja historia. Upewnij się, że na " +
+                "pewno odwiedziłeś wszystkie tabliczki oraz komputery, aby poznać informacje o moich projektach."},
+            { x: 10, y: 13, date: "2014", type: "project", project: "Strona szkoły", contents: "Prowadzenie strony liceum opartej na starym hostingu z PHP 4.4.9 oraz JavaScript. " + 
+                "W trakcie szkoły średniej miałem okazję zająć się stroną internetową, gdyż nikt w czasie mojej nauki nie był na tyle zainteresowany programowaniem, aby podjąć się " + 
+                "tego zadania. Udało mi się stworzyć bardzo mały CMS, który pozwalał na dodawanie aktualności, pomniejsze zmienianie treści strony oraz zarządzanie użytkownikami. " +
+                "Szkoła nadal korzysta z napisanego przeze mnie programu, układ nie zmienił się od czasu kiedy byłem w liceum i większość widocznych rzeczy była stworzona przeze mnie " + 
+                "i moją koleżankę. Stronę można zobaczyć pod adresem: http://www.jedynka.zgora.pl"},
             { x: 13, y: 3, date: "2014", type: "project", project: "Logic Ball", contents: "Nauka tworzenia aplikacji graficznych w C#. Miała być to gra logiczna polegająca " +
-                "na przeusnięciu kulki do celu, która mogła poruszać się w czterech kierunkach ale zatrzymywać tylko w momencie uderzenia w ścianę. Projekt w " +
-                "którym pierwszy raz wykorzystałem efekty cząsteczkowe. Zdobywałem wiedzie na temat podstawowe elementów fizyki w grach oraz detekcji kolizji.", 
-                github: "https://github.com/adamuso/LogicBall"
+                "na przesunięciu kulki do celu, która mogła poruszać się w czterech kierunkach ale zatrzymywać tylko w momencie uderzenia w ścianę. Projekt w " +
+                "którym pierwszy raz wykorzystałem efekty cząsteczkowe. Zdobywałem wiedze na temat podstawowe elementów fizyki w grach oraz detekcji kolizji.", 
+                github: "https://github.com/adamuso/LogicBall", youtube: "https://www.youtube.com/watch?v=cIpnB1fRgc4"
             },
             { x: 23, y: 9, date: "2015", type: "project", project: "3D Chunk Platformer Test", contents: "Projekt w którym uczyłem się tworzenia aplikacji używającej grafiki 3D. " +
                 "Zainspirowany grą Minecraft chciałem stworzyć podobny silnik renderujący sześciany z nałożoną teksturą. Dodatkowo udało mi się osiągnąć w " + 
-                "miare optymalne renderowanie za pomocą tzw. 'chunków', które pozwalały na szybkie ładowanie dużych obszarów z sześcianami. Gra ostatecznie " +
+                "miarę optymalne renderowanie za pomocą tzw. 'chunków', które pozwalały na szybkie ładowanie dużych obszarów z sześcianami. Gra ostatecznie " +
                 "miała być platformowa w świecie o dosyć dużych rozmiarach. Do projektu wykorzystywałem język C# oraz bibliotekę MonoGame.",
-                github: "https://github.com/adamuso/Platform3D"
+                github: "https://github.com/adamuso/Platform3D", youtube: "https://www.youtube.com/watch?v=7VejOozQKQs"
             },
             { x: 35, y: 13, date: "2016", type: "project", project: "Praca w firmie - OCR", contents: "Podczas pracy w firmie PirmeSoft w Poznaniu nauczyłem się wykorzystywać " +
-                "różne algorytmy przetwarzania obrazu, w tym głównie aby umożliwić odczyt tekstu z dokumentów. Wykorzystywałem takie operacje jak binaryzacje " +
+                "różne algorytmy przetwarzania obrazu, w tym głównie aby umożliwić odczyt tekstu z dokumentów. Wykorzystywałem takie operacje jak binaryzację " +
                 "różne filtry odszumiające obraz oraz algorytm RLSA (Run Length Smoothing Algorithm. Zajmowałem się przetwarzaniem obrazu oraz uruchamianiu na " +
                 "nim OCR'a, z którego jako wynik otrzymywałem bloki z tekstem. Następnie należało wybrać odpowiednie bloki oraz poprawić odczytany tekst, gdyż " +
                 "często zawierał wiele błędów (wykorzystywana była w tym celu odległość Levenshteina). Opracowałem w pracy własny algorytm wybierania odpowiednich " +
-                " bloków tekstu opierający się na geometrii i zależnościach między danymi blokami, co spowodowało zwiększe efektywności odczytu o ponad 15%. " +
-                "Pisałem również aplikacje wewnętrzne umożliwiające interaktywną prace z przetworzonymi obrazami jak i testowanie różnych rodzajów procesowania " + 
+                " bloków tekstu opierający się na geometrii i zależnościach między danymi blokami, co spowodowało zwiększenie efektywności odczytu o ponad 15%. " +
+                "Pisałem również aplikacje wewnętrzne umożliwiające interaktywną pracę z przetworzonymi obrazami jak i testowanie różnych rodzajów procesowania " + 
                 "obrazu, a także podgląd odczytanych danych i trening OCR'a. Do projektów wykorzystywany był język C# oraz technologia WPF."},
             { x: 48, y: 9, date: "2016", type: "project", project: "Destroy Nobots", contents: "Zamiarem było stworzenie gry, w której gracz miałby do dyspozycji pojazdy mogące do " +
                 "siebie strzelać i jego celem byłoby wyeliminowanie wrogich pojazdów, a przy dalszym rozwoju miała powstać gra strategiczna. Kluczowym elementem było " + 
@@ -78,27 +85,29 @@ export class Game
                 "pełni sprawny, kompilowalny do kodu binarnego, a także została do niego napisana wirtualna maszyna, która ten kod potrafi uruchomić. W projekcie " +
                 "została użyta technologia C# i biblioteka MonoGame. W aktualnym stanie projekt wyświetla pojazd, który jest zaprogramowany za pomocą wbudowanego " + 
                 "assemblera i za pomocą zawartych w nim rejestrów pojazd potrafi odczytywać dane wytworzone przez assembler, które sterują jego ruchem.",
-                github: "https://github.com/adamuso/DestroyNobots"
+                github: "https://github.com/adamuso/DestroyNobots", youtube: "https://www.youtube.com/watch?v=pdEG0yuPRlY"
             },
             { x: 65, y: 13, date: "2016", type: "project", project: "Zręcznościowa platformówka", contents: "Projekt miał na celu odtworzenie starej gry z dzieciństwa Jazz JackRabbit 2 " +
                 "(z której testowo została użyta grafika postaci) aby potrenować tworzenie gier platformowych. Została zaimplementowana w nim fizyka gier platformowych " +
-                "wraz z detekcją kolziji Pixel Perfect Collisions pozwalającą na bardzo dokładną kolizję z mapą gry oraz innymi postaciami. Stworzony również został " + 
+                "wraz z detekcją kolizji Pixel Perfect Collisions pozwalającą na bardzo dokładną kolizję z mapą gry oraz innymi postaciami. Stworzony również został " + 
                 "silnik renderujący mapę składającą się z wielu warstw kafelków nakładających się na siebie, co pozwala uzyskać różne efekty takie jak: Parallax Scrolling, " + 
                 "czy automatycznie ruszające się tło, a także zapętlające się tło lub przednia scena. W grze również został zaimplementowany system triggerów (lub eventów), które " + 
                 "pozwalały w prosty sposób na interakcje z graczem lub otoczeniem poprzez określenie miejsca danego trigger'u na mapie oraz jego zachowania. Do gry została " + 
                 "użyta technologia C# oraz biblioteka MonoGame. W grze aktualnie możemy tylko testować poruszanie się po mapie i platformową fizykę.",
-                github: "https://github.com/adamuso/OldStylePlatformingGame"
+                github: "https://github.com/adamuso/OldStylePlatformingGame", youtube: "https://www.youtube.com/watch?v=gKOw5z9WYLs"
             },
             { x: 75, y: 5, date: "2018", type: "project", project: "Console Invaders", contents: "Gra w konsoli polegająca na lataniu statkiem na boki, strzelaniem w nadlatujące z góry " + 
-                "wrogie statki oraz omijaniem nadlatujących pocisków. Gra została napsana w konsoli wykorzystując język C#."},
+                "wrogie statki oraz omijaniem nadlatujących pocisków. Gra została napsana w konsoli wykorzystując język C#. Gra została napisana w konsoli wykorzystując język C#. Była to " +
+                "odskocznia od innych projektów, napisana w miarę szybko, głównie jako ciekawostka.", 
+                youtube: "https://www.youtube.com/watch?v=PDXsdAlftZk", github: "https://github.com/adamuso/ConsoleInvaders"},
             { x: 80, y: 13, date: "2018", type: "project", project: "Blazor.WebGL - czyli silnik graficzny w C# dla przeglądarek", contents: "Projekt polega na stworzeniu silnika graficznego, " + 
                 "w którym możemy w języku C# pisać gry na przeglądarki. Silnik uruchamiany byłby w przeglądarce za pomocą biblioteki Blazor, która potrafi załadować za pomocą " +
                 "WebAssembly całą platformę Mono, a następnie pozwala na ładowania skompilowanych plików .dll wygenerowanych za pomocą języków .NET. Projekt jest tzw. " +
-                "'proof of concept' pokazującym, że można pisać gry bezpośrednio w C# na przeglądarki. Stworzone zostały podsawty silnika umożliwiające wyświetlenie " + 
+                "'proof of concept' pokazującym, że można pisać gry bezpośrednio w C# na przeglądarki. Stworzone zostały podstawy silnika umożliwiające wyświetlenie " + 
                 "sześcianu 3D oraz nałożeniu na niego tekstury przy użyciu WebGL, co oznacza, że działa także wczytywanie shaderów i innych zasobów. Mając możliwość " +   
                 "wyświetlania prymitywów oraz ładowania shaderów jesteśmy w stanie tworzyć podstawowe gry 3D oraz 2D. Projekt można rozwinąć o możliwość ładowania " + 
                 "modeli w określonym formacie, czy o dodatkowe elementy ułatwiające pracę z WebGL w C#.",
-                github: "https://github.com/adamuso/Blazor.WebGL"
+                github: "https://github.com/adamuso/Blazor.WebGL", youtube: "https://www.youtube.com/watch?v=gKq8JS2Arfk"
             },
             { x: 85, y: 6, date: "2018", type: "project", project: "Praca - wizualizacja sprzętowa", contents: "W pracy odpowiadam za graficzną wizualizację działania lub stanu sprzętu, " + 
                 "która jest pokazywana klientom. Tworzę ją od zera, zaczynając od programów agregujących dane z urządzeń łączących się porpzez różne protokoły komunikacjyjne " + 
@@ -118,8 +127,8 @@ export class Game
                 "wykorzystaniem elementów C++11. Aplikacja jest konsolowa i pozwala obserwować oraz manipulować symulacją. Jest zoptymalizowana pod względem graficznego wyświetlania w konsoli " + 
                 "oraz pozwala na stworzenie w miarę dużego świata poprzez możliwość przesuwania kamery. Dodatkowo został zaimplementowany prosty interfejs graficzny dla użytkownika, czyli proste menu " + 
                 "oraz możliwość wyboru opcji. W projekcie został stworzony własny generyczny typ przechowujący referencje bazujący na shared_ptr, który zapewnia jeszcze bardziej abstrakcyjny dostęp do obiektów i " + 
-                "pozwala na mniejsze zaangażowanie programisty w zarządzanie pamięcią."},
-            { x: 118, y: 11, date: "2018", type: "project", project: "GoodFood", contents: "Wspólne tworzenie z Dominiką Gibek aplikacji na system Android w języku Java polegającej na szybkiej możliwości wyszukiwania " + 
+                "pozwala na mniejsze zaangażowanie programisty w zarządzanie pamięcią.", github: "https://github.com/adamuso/ConwaysGameOfLife", youtube: "https://www.youtube.com/watch?v=JXlfPeBqmH8"},
+            { x: 118, y: 11, date: "2018", type: "project", project: "GoodFood", contents: "Wspólne tworzenie z koleżanką aplikacji na system Android w języku Java polegającej na szybkiej możliwości wyszukiwania " + 
                 "przepisów ze składników, które posiadamy w domu. Projekt umożliwiał również dodawanie własnych przepisów i graficznie zorientowane wyszukwianie przepisów. W projekcie odpowiadałem za " + 
                 "tworzenie logiki wyszukiwania oraz za pomniejsze zadania związane z łączeniem widoków z logiką."},
             { x: 138, y: 10, date: "2019", type: "project", project: "Praca - wizualizacja lokalizacji", contents: "Podczas pracy zaszła potrzeba wykorzystania lokalizacji za czym idzie również jej wizualizacja. Zajmowałem " +
@@ -226,7 +235,7 @@ export class Game
                 "Zrealizowałem portfolio w postaci małej gry platformowej, w którą możesz zagrać. W świecie gry rozstawiłem tabliczki, które chronologicznie ukażą " + 
                 "części mojej historii. Znajdziesz tu również małe komputery, które pomogą zapoznać się z moimi projektami. Aby poruszać postacią w lewo i prawo użyj " +
                 "odpowiednio klawiszy 'A' i 'D'. Aby skoczyć do góry użyj klawisza 'W'. Dodatkowo w momencie podejścia do tabliczki, aby odczytać jej zawartość " + 
-                "wciśnij przycisk skoku, czyli 'W'. Życzę miłej gry.",
+                "wciśnij przycisk skoku, czyli 'W'. Projekt ten jest częścią mojego dokumentu portfolio, który jest uzupełnieniem przedstawionych tu informacji. Życzę miłej gry.",
             type: "story"
         }), 1000);
     }
@@ -483,6 +492,14 @@ export class Game
         }
         else
             githubButton.style.visibility = "collapse";
+
+        if(interactInfoBox.youtube)
+        {
+            youtubeButton.style.visibility = "";
+            (youtubeButton as HTMLLinkElement).href = interactInfoBox.youtube; 
+        }
+        else
+            youtubeButton.style.visibility = "collapse";
         
         this.application.stop();
     }
